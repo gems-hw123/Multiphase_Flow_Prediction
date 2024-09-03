@@ -1,0 +1,15 @@
+#!/bin/bash
+#PBS -N pbs_test
+#PBS -S /bin/bash
+#PBS -q v1_gpu72
+#PBS -l select=1:ncpus=8:ngpus=1:mem=768gb
+#PBS -l walltime=48:00:00
+
+module load anaconda3/personal
+nvidia-smi
+
+source activate base
+conda activate pytorch_env
+
+cd $PBS_O_WORKDIR
+python train.py
